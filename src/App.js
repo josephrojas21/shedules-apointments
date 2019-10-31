@@ -16,8 +16,20 @@ class App extends Component {
 
     componentDidCatch(error, info) {
         console.log(error, info);
+        
     }
 
+    getdata(){
+        fetch('http://localhost:3000')
+        .then(response => response.json())
+        .then(json => console.log(json))
+        console.log('fin');
+    }
+
+    componentDidMount(){
+       this.getdata();
+    }   
+    
     render() {
         return (
             <div>
@@ -38,6 +50,9 @@ class App extends Component {
             </div>
         )
     }   
+
+
+
 }
 
 
