@@ -3,7 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider, connect } from 'react-redux';
 import DataTable from './services/data'
-import Counter from './counter'
+
 
 import TotalCounters from './components/totalCounters/index'
 import Alerts from './components/alerts/index'
@@ -36,11 +36,8 @@ class App extends Component {
     componentDidMount() {
         //this.getdata();
         DataTable.getData().then(data =>{
-            data.rows.push({
-                clickEvent: this.handleRowClick() 
-            })
             this.setState({
-                dataTable: data,
+                dataTable: data[0],
                 isData: true
             })
             console.log(data);
