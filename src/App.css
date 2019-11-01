@@ -4,7 +4,10 @@
 }
 
 #searchComp{
-  padding: 2%;
- 
+  padding: 2%; 
 }
 
+
+.SpaceBetweenComponents {
+  padding-top: 2%; 
+}

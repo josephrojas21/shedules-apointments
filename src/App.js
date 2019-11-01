@@ -4,11 +4,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider, connect } from 'react-redux';
 import Counter from './counter'
 
+import TotalCounters from './components/totalCounters/index'
 import Alerts from './components/alerts/index'
 import SearchOrders from './components/searchOrders/index'
 import TableOrders from './components/tableOrders/index'
 import DeliveryCategories from './components/deliveryCategories/index'
-
+import Row from 'react-bootstrap/Row'
 
 
 class App extends Component {
@@ -39,20 +40,27 @@ class App extends Component {
     }
 
     render() {
-        const {store,globalEventDistributor,isData } = this.state
+        const { store, globalEventDistributor, isData } = this.state
         return (
-            <div className= "container-fluid">
+            <div className="container-fluid">
                 {store && globalEventDistributor ?
                     <Provider store={this.state.store}>
                         <div className="row">
                             <div className="col-7" id="searchComp">
                                 <SearchOrders />
                                 <TableOrders />
-                             { isData ? <Alerts /> : false }
+                                {isData ? <Alerts /> : false}
                                 {/* <Counter globalEventDistributor={this.state.globalEventDistributor}/> */}
                             </div>
                             <div className="col-5">
-                                <DeliveryCategories />
+                                <div className="row" id="table">
+                                    <Row className="SpaceBetweenComponents">
+                                        <TotalCounters />
+                                    </Row>
+                                    <Row className="SpaceBetweenComponents">
+                                    <DeliveryCategories />
+                                    </Row>
+                                </div>
                             </div>
                         </div>
                     </Provider> :
