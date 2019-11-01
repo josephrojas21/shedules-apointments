@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Provider, connect } from 'react-redux';
+import DataTable from './services/data'
 import Counter from './counter'
 
 import TotalCounters from './components/totalCounters/index'
@@ -17,6 +18,7 @@ class App extends Component {
         super(props);
         this.state = {
             store: this.props.store,
+            dataTable: {},
             globalEventDistributor: this.props.globalEventDistributor,
             isData: false
         }
@@ -24,6 +26,26 @@ class App extends Component {
 
     componentDidCatch(error, info) {
         console.log(error, info);
+
+    }
+
+    handleRowClick(event){
+        console.log('hola desdee aca',event);
+        
+    }
+    componentDidMount() {
+        //this.getdata();
+        DataTable.getData().then(data =>{
+            data.rows.push({
+                clickEvent: this.handleRowClick() 
+            })
+            this.setState({
+                dataTable: data,
+                isData: true
+            })
+            console.log(data);
+            
+        })
 
     }
 
@@ -35,12 +57,10 @@ class App extends Component {
         this.setState({ isData: false });
     }
 
-    componentDidMount() {
-        this.getdata();
-    }
+    
 
     render() {
-        const { store, globalEventDistributor, isData } = this.state
+        const {store,globalEventDistributor,isData,dataTable } = this.state
         return (
             <div className="container-fluid">
                 {store && globalEventDistributor ?
@@ -48,8 +68,8 @@ class App extends Component {
                         <div className="row">
                             <div className="col-7" id="searchComp">
                                 <SearchOrders />
-                                <TableOrders />
-                                {isData ? <Alerts /> : false}
+                                { isData ? <TableOrders dataTable={dataTable}/> : <h1>No hay ordenes para poder agendar cita</h1> }
+                                {/* { isData ? <Alerts /> : false } */}
                                 {/* <Counter globalEventDistributor={this.state.globalEventDistributor}/> */}
                             </div>
                             <div className="col-5">
