@@ -133,11 +133,11 @@ class deliveryCategories extends Component {
                                                             </Form>                                                    
                                                 </Col>
                                                 <Col>  
-                                                     <Row className="">
+                                                     <Row className="paddings">
                                                                 <Row> Documento Compra: 5100038136 </Row>
-                                                                <Row>   Código Material: 502332  </Row>
-                                                                <Row>     Orden Fabricación: 2022144 </Row>
-                                                                <Row>     Material: CORSET CORTO STRAPLESS </Row>
+                                                                <Row> Código Material: 502332  </Row>
+                                                                <Row> Orden Fabricación: 2022144 </Row>
+                                                                <Row> Material: CORSET CORTO STRAPLESS </Row>
                                                     </Row>
                                                 </Col>
                                             </Row>

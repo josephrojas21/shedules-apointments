@@ -10,7 +10,7 @@ import Alerts from './components/alerts/index'
 import SearchOrders from './components/searchOrders/index'
 import TableOrders from './components/tableOrders/index'
 import DeliveryCategories from './components/deliveryCategories/index'
-import Row from 'react-bootstrap/Row'
+
 
 
 class App extends Component {
@@ -71,12 +71,8 @@ class App extends Component {
                             </div>
                             <div className="col-5">
                                 <div className="row" id="table">
-                                    <Row className="SpaceBetweenComponents">
-                                        <TotalCounters />
-                                    </Row>
-                                    <Row className="SpaceBetweenComponents">
+                                    <TotalCounters/>
                                     <DeliveryCategories />
-                                    </Row>
                                 </div>
                             </div>
                         </div>
