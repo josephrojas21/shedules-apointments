@@ -5,11 +5,12 @@ import { Provider, connect } from 'react-redux';
 import DataTable from './services/data'
 import Counter from './counter'
 
+import TotalCounters from './components/totalCounters/index'
 import Alerts from './components/alerts/index'
 import SearchOrders from './components/searchOrders/index'
 import TableOrders from './components/tableOrders/index'
 import DeliveryCategories from './components/deliveryCategories/index'
-
+import Row from 'react-bootstrap/Row'
 
 
 class App extends Component {
@@ -61,7 +62,7 @@ class App extends Component {
     render() {
         const {store,globalEventDistributor,isData,dataTable } = this.state
         return (
-            <div className= "container-fluid">
+            <div className="container-fluid">
                 {store && globalEventDistributor ?
                     <Provider store={this.state.store}>
                         <div className="row">
@@ -72,7 +73,14 @@ class App extends Component {
                                 {/* <Counter globalEventDistributor={this.state.globalEventDistributor}/> */}
                             </div>
                             <div className="col-5">
-                                <DeliveryCategories />
+                                <div className="row" id="table">
+                                    <Row className="SpaceBetweenComponents">
+                                        <TotalCounters />
+                                    </Row>
+                                    <Row className="SpaceBetweenComponents">
+                                    <DeliveryCategories />
+                                    </Row>
+                                </div>
                             </div>
                         </div>
                     </Provider> :

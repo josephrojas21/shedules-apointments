@@ -1,0 +1,31 @@
+.paddings {
+    padding-left:9px;
+    padding-right:9px;
+    padding-top: 0%;
+  }
+
+  .paddings2 {
+    padding-left:9px;
+    padding-right:9px;
+    padding-top: 0%;
+  }
+
+  .paddingright {
+    padding-right:0;
+  }
+
+
+  .cardTextSize {
+    font-size: 13px !important;
+  }
+
+  
+  .SquechuleButton {
+    padding-top: 5px;
+    padding-left: 15px;
+    padding-right: 15px;   
+  }
+
+/* 
+  padding-right: 9px;
+    padding-left: 9px; */
