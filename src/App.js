@@ -10,7 +10,7 @@ import Alerts from './components/alerts/index'
 import SearchOrders from './components/searchOrders/index'
 import TableOrders from './components/tableOrders/index'
 import DeliveryCategories from './components/deliveryCategories/index'
-
+import ConfirmDate from './components/confirmDate/index'
 
 
 class App extends Component {
@@ -20,13 +20,14 @@ class App extends Component {
             store: this.props.store,
             dataTable: {},
             globalEventDistributor: this.props.globalEventDistributor,
-            isData: false
+            isData: false,
+            dataDetails: {},
+            branch: 'Categoría PCFK1'      
         }
     }
 
     componentDidCatch(error, info) {
         console.log(error, info);
-
     }
 
     handleRowClick(event){
@@ -35,19 +36,15 @@ class App extends Component {
     }
     componentDidMount() {
         //this.getdata();
-        DataTable.getData().then(data =>{
-            data.rows.push({
-                clickEvent: this.handleRowClick() 
-            })
+        DataTable.getData().then(data =>{           
             this.setState({
-                dataTable: data,
-                isData: true
-            })
-            console.log(data);
-            
+                dataTable: data[0],
+                isData: true,
+                dataDetails: data[1]
+            }) 
         })
-
     }
+
 
     getdata() {
         fetch('http://localhost:3000')
@@ -60,7 +57,7 @@ class App extends Component {
     
 
     render() {
-        const {store,globalEventDistributor,isData,dataTable } = this.state
+        const {store,globalEventDistributor,isData,dataTable, dataDetails } = this.state
         return (
             <div className="container-fluid">
                 {store && globalEventDistributor ?
@@ -73,10 +70,12 @@ class App extends Component {
                                 {/* <Counter globalEventDistributor={this.state.globalEventDistributor}/> */}
                             </div>
                             <div className="col-5">
-                                <div className="row" id="table">
-                                    <TotalCounters/>
-                                    <DeliveryCategories />
+                                <div className="row">
+                                    <TotalCounters/>                                                                 
                                 </div>
+                                {isData ? <DeliveryCategories branch={this.state.branch} dataDetails={dataDetails}/>: <h1>No ha cargado detalle</h1>}   
+                                {isData ? <DeliveryCategories branch = {this.state.branch} dataDetails={dataDetails}/>: <h1>No ha cargado detalle</h1>}
+                                <ConfirmDate className="row"/>
                             </div>
                         </div>
                     </Provider> :
