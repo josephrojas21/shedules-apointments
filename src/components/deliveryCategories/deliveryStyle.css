@@ -19,12 +19,17 @@
     font-size: 13px !important;
   }
 
-  
-  .SquechuleButton {
-    padding-top: 5px;
-    padding-left: 15px;
-    padding-right: 15px;   
+  .centerTable{
+    text-align: center !important;
   }
+
+  .widthTexbox{
+    width: 90px;
+    text-align: center;
+    align-items: center;
+  }
+
+
 
 /* 
   padding-right: 9px;
