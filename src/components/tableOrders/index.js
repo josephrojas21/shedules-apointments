@@ -9,20 +9,14 @@ class TableOrders extends Component{
         this.state = {
             
         }
-        this.handleChange = this.handleChange.bind(this)
     }
 
-    handleChange(e){
-        const {name, value } = e.target;
-        console.log(name,value,'hola undo');
-        
-    }
     
 
     render() {
         const {dataTable } = this.props
         return (
-            <div className="row" id="table">
+            <div className="row" id="table" >
                 <div className="col-12">
                     <MDBDataTable
                     striped
@@ -35,7 +29,7 @@ class TableOrders extends Component{
                     paginationLabel={["Anterior", "Siguiente"]}
                     entriesLabel="Mostrar registros"
                     searchLabel="Buscar"
-                    onChange={this.handleChange}
+                    
                     />
                 </div>
             </div>

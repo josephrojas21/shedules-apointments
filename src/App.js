@@ -29,13 +29,22 @@ class App extends Component {
 
     }
 
-    handleRowClick(event){
-        console.log('hola desdee aca',event);
+    handleClick(order){
+        console.log('hola desdee aca',order);
         
     }
     componentDidMount() {
         //this.getdata();
         DataTable.getData().then(data =>{
+            for (const key in data[0].rows) {
+                if (data[0].rows.hasOwnProperty(key)) {
+                    let element = data[0].rows[key];
+                    let fun = {clickEvent: () => this.handleClick(data[0].rows[key].Order) }
+                    element = Object.assign(element, fun )
+                    console.log(element);
+                    
+                }
+            }
             this.setState({
                 dataTable: data[0],
                 isData: true
@@ -46,13 +55,19 @@ class App extends Component {
 
     }
 
-    getdata() {
-        fetch('http://localhost:3000')
-            .then(response => response.json())
-            .then(json => console.log(json))
+    // getdata() {
+    //     fetch('http://localhost:3000')
+    //         .then(response => response.json())
+    //         .then(json => console.log(json))
 
-        this.setState({ isData: false });
+    //     this.setState({ isData: false });
+    // }
+
+    handleOnClick(e){
+        const {name } = e.target;
+        console.log(name,'hola undo');  
     }
+    
 
     
 
