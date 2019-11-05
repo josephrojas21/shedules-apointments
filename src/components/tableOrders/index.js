@@ -9,6 +9,13 @@ class TableOrders extends Component{
         this.state = {
             
         }
+        this.handleChange = this.handleChange.bind(this)
+    }
+
+    handleChange(e){
+        const {name, value } = e.target;
+        console.log(name,value,'hola undo');
+        
     }
     
 
@@ -28,6 +35,7 @@ class TableOrders extends Component{
                     paginationLabel={["Anterior", "Siguiente"]}
                     entriesLabel="Mostrar registros"
                     searchLabel="Buscar"
+                    onChange={this.handleChange}
                     />
                 </div>
             </div>
