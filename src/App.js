@@ -81,8 +81,6 @@ class App extends Component {
                             <div className="col-7" id="searchComp">
                                 <SearchOrders />
                                 { isData ? <TableOrders dataTable={dataTable}/> : <h1>No hay ordenes para poder agendar cita</h1> }
-                                {/* { isData ? <Alerts /> : false } */}
-                                {/* <Counter globalEventDistributor={this.state.globalEventDistributor}/> */}
                             </div>
                             <div className="col-5">
                                 <div className="row">
