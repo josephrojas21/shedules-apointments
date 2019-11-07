@@ -22,7 +22,9 @@ class App extends Component {
             globalEventDistributor: this.props.globalEventDistributor,
             isData: false,
             dataDetails: {},
-            branch: 'Categoría PCFK1'      
+            branch: 'Categoría PCFK1',
+            selectedItem: 0,
+            selectedInfo: {} 
         }
     }
 
@@ -43,7 +45,7 @@ class App extends Component {
                     let element = data[0].rows[key];
                     let fun = {clickEvent: () => this.handleClick(data[0].rows[key].Order) }
                     element = Object.assign(element, fun )
-                    console.log(element);
+                   // console.log(element);
                     
                 }
             }          

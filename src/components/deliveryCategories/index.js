@@ -8,16 +8,29 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Form from 'react-bootstrap/Form'
 import './deliveryStyle.css'
-
 import Table from 'react-bootstrap/Table'
+import InputGroup from 'react-bootstrap/InputGroup'
+import Button from 'react-bootstrap/Button'
 
 class deliveryCategories extends Component {
     constructor() {
         super()
         this.state = {
-            collapseID: ""
+            collapseID: "",
+            validated: false,
+            setValidated: false
         }
     }
+
+    handleSubmit = event => {
+        const form = event.currentTarget;
+        if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        console.log('Entró');
+        this.setState({ validated: true });
+    };
 
 
     toggleCollapse = collapseID => () => {
@@ -52,7 +65,8 @@ class deliveryCategories extends Component {
                     <td>{plu}</td>
                     <td>{cantidad_inicial}</td>
                     <td>{cantidad_pendiente}</td>
-                    <td>{cantidad_entregar}</td>
+                    {/* cantidad_entregar */}
+                    <td><input type="number" className="widthTexbox form-control" defaultValue="0" size="16" /></td>
                 </tr>
             )
         })
@@ -62,6 +76,9 @@ class deliveryCategories extends Component {
     render() {
 
         //const  branch  = this.props;
+        const { validated, setValidated } = this.state;
+
+
 
         return (
             <div>
@@ -77,7 +94,7 @@ class deliveryCategories extends Component {
 
                 <MDBCollapse id="basicCollapse" isOpen={this.state.collapseID}>
 
-                    <Table responsive>
+                    <Table responsive className="centerTable table-hover">
                         <tbody>
                             <tr>{this.renderheader()}</tr>
                             {this.renderBody()}
@@ -99,31 +116,63 @@ class deliveryCategories extends Component {
                     <Container className="text-center paddings2">
                         <Row >
                             <Col>
-                                <Form>
-                                    {/* backpack, boxes, bags */}
-                                    <Form.Group as={Row} controlId="formPaking">
-                                        <Row>
-                                            <Form.Label column sm="6">
-                                                Tulas                                                                     </Form.Label>
-                                            <Col sm="5">
-                                                <Form.Control type="text" placeholder="# Tulas" />
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            <Form.Label column sm="6">
-                                                Cajas                                                                        </Form.Label>
-                                            <Col sm="5" >
-                                                <Form.Control type="text" placeholder="# Cajas" />
-                                            </Col>
-                                        </Row>
-                                        <Row>
-                                            <Form.Label column sm="6">
-                                                Bolsas                                                                         </Form.Label>
-                                            <Col sm="5">
-                                                <Form.Control type="text" placeholder="# Bolsas" />
-                                            </Col>
-                                        </Row>
-                                    </Form.Group>
+                                <Form noValidate validated={validated} onSubmit={this.handleSubmit}>
+                                    <Form.Row>
+                                        <Form.Group as={Col} ms="4" md="6" controlId="validationCustom0">                                          
+                                            <InputGroup>
+                                                <InputGroup.Prepend>
+                                                    <InputGroup.Text id="inputGroupPrepend">Tulas</InputGroup.Text>
+                                                </InputGroup.Prepend>
+                                                <Form.Control
+                                                    type="text"
+                                                    placeholder="0"
+                                                    aria-describedby="inputGroupPrepend"
+                                                    required
+                                                />
+                                                <Form.Control.Feedback type="invalid">
+                                                Ingrese la cantidad
+                                        </Form.Control.Feedback>
+                                            </InputGroup>
+                                        </Form.Group>
+                                    </Form.Row>
+                                    <Form.Row>
+                                        <Form.Group as={Col} ms="4" md="6" controlId="validationCustom1">                                          
+                                            <InputGroup>
+                                                <InputGroup.Prepend>
+                                                    <InputGroup.Text id="inputGroupPrepend">Cajas</InputGroup.Text>
+                                                </InputGroup.Prepend>
+                                                <Form.Control
+                                                    type="text"
+                                                    placeholder="0"
+                                                    aria-describedby="inputGroupPrepend"
+                                                    required
+                                                />
+                                                <Form.Control.Feedback type="invalid">
+                                                Ingrese la cantidad
+                                        </Form.Control.Feedback>
+                                            </InputGroup>
+                                        </Form.Group>
+                                    </Form.Row>
+                                    <Form.Row>
+                                        <Form.Group as={Col} ms="4" md="6" controlId="validationCustom2">                                          
+                                            <InputGroup>
+                                                <InputGroup.Prepend>
+                                                    <InputGroup.Text id="inputGroupPrepend">Bolsas</InputGroup.Text>
+                                                </InputGroup.Prepend>
+                                                <Form.Control
+                                                    type="text"
+                                                    placeholder="0"
+                                                    aria-describedby="inputGroupPrepend"
+                                                    required
+                                                />
+                                                <Form.Control.Feedback type="invalid">
+                                                    Ingrese la cantidad
+                                        </Form.Control.Feedback>
+                                            </InputGroup>
+                                        </Form.Group>
+                                    </Form.Row>
+
+                                    <Button type="submit">Submit form</Button>
                                 </Form>
                             </Col>
                             <Col>
@@ -137,8 +186,8 @@ class deliveryCategories extends Component {
                         </Row>
 
                     </Container>
-                </MDBCollapse>
-            </div>
+                </MDBCollapse >
+            </div >
         );
     }
 }
